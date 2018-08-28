@@ -71,7 +71,7 @@
 
         $.post("/account/login",{username,password,vcode},(result) => {
             if(result.status == 0) {
-                alert("登录成功");
+                location.href = "/studentManager/list";
             }else {
                 alert(result.message);
                 $("#vcodeimgId").attr("src",`/account/vcode?randId=${Math.random()}`);

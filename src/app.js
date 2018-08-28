@@ -15,7 +15,11 @@ app.use(session({ resave: false, saveUninitialized: true,  secret: 'keyboard cat
 //集成路由
 //获取登录页面
 const accountRouter = require(path.join(__dirname,"/routers/accountRouter.js"));
+//学生管理页面
+const studentRouter = require(path.join(__dirname,"/routers/studentManagerRouter.js"));
+
 app.use("/account",accountRouter);
+app.use("/studentManager",studentRouter);
 
 //开启服务
 app.listen(3000,"127.0.0.1",err => {
