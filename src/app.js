@@ -1,0 +1,24 @@
+//引入模块,创建应用
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
+const session = require("express-session");
+//创建一个app
+const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(session({ resave: false, saveUninitialized: true,  secret: 'keyboard cat', cookie: { maxAge: 600000 }}));
+
+
+//集成路由
+//获取登录页面
+const accountRouter = require(path.join(__dirname,"/routers/accountRouter.js"));
+app.use("/account",accountRouter);
+
+//开启服务
+app.listen(3000,"127.0.0.1",err => {
+    if(err) throw err;
+    console.log("start ok");
+})
