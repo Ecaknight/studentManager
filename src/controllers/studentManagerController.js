@@ -17,5 +17,4 @@ exports.getStudentListPage = (req, res) => {
         });
     })
 
-
 }
