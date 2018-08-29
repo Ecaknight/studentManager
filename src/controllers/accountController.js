@@ -71,6 +71,8 @@ exports.login = (req, res) => {
     }
 
     dbTool.findOne("accountInfo", { username: req.body.username, password: req.body.password }, (err, doc) => {
+        console.log(req.body);
+        
         if (doc) {
             res.json(result);
         } else {
