@@ -74,6 +74,7 @@ exports.login = (req, res) => {
         console.log(req.body);
         
         if (doc) {
+            req.session.loginName = req.body.username;
             res.json(result);
         } else {
             result.status = 2;
@@ -82,4 +83,10 @@ exports.login = (req, res) => {
         }
     });
 
+}
+
+//处理退出请求
+exports.logout = (req,res) => {
+    req.session.loginName = null;
+    res.send("<script>location = '/account/login';</script>");
 }

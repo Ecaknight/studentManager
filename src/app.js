@@ -11,6 +11,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({ resave: false, saveUninitialized: true,  secret: 'keyboard cat', cookie: { maxAge: 600000 }}));
 
+//实现拦截器功能
+app.all("/*",(req,res,next) => {
+    if(req.originalUrl.includes("/account")) {
+        next();
+    }else {
+        if(req.session.loginName) {
+            next();
+        }else {
+            res.send(`<script>alert("你还未登录,请先登录"); location="/account/login";</script>`);
+        }
+    }
+    
+})
 
 //集成路由
 //获取登录页面

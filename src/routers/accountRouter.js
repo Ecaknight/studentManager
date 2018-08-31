@@ -18,5 +18,7 @@ router.get("/vcode",accountController.getVcode);
 
 //转发登录的请求
 router.post("/login",accountController.login);
+//退出请求
+router.get("/logout",accountController.logout);
 
 module.exports = router;
